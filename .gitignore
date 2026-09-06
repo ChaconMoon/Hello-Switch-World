@@ -1,0 +1,10 @@
+# Artefactos de compilación
+build/
+*.elf
+*.nro
+*.nacp
+
+# Archivos generados por herramientas del sistema y del editor
+.DS_Store
+*.swp
+*.swo

@@ -1,0 +1,11 @@
+{
+    "name": "switch Dev",
+    "image": "devkitpro/devkita64:latest",
+    "workspaceFolder": "/src",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/src,type=bind",
+    "customizations": {
+        "vscode": {
+            "extensions": ["ms-vscode.cpptools", "ms-vscode.makefile-tools"]
+        }
+    }
+}

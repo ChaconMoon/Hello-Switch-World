@@ -1,0 +1,32 @@
+name: New Release Hello Switch World
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkita64:latest
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v4
+
+      - name: Run Makefile
+        run: make
+
+      - name: Read release title
+        id: release_info
+        run: |
+          title="$(tr -d '\r\n' < .github/release/release_title.txt)"
+          echo "name=$title" >> "$GITHUB_OUTPUT"
+
+      - name: Upload to GitHub Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: ${{ steps.release_info.outputs.name }}
+          body_path: .github/release/release_body.md
+          files: ./HelloSwitchWorld.nro
